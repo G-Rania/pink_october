@@ -8,7 +8,7 @@
   # environment-value scanner otherwise treats their legitimate function use
   # as a build leak. npm run build separately scans dist for the raw,
   # URI-encoded, and base64-encoded values before a deploy can succeed.
-  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_SERVICE_ROLE_KEY,SUPABASE_URL"
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_SERVICE_ROLE_KEY,SUPABASE_URL,MESSAGE_MODERATION_MODE"
 [functions]
   node_bundler = "esbuild"
 [dev]
