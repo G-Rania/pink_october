@@ -4,6 +4,7 @@ dist/
 .env
 .env.*
 !.env.example
+README.md
 test-results/
 playwright-report/
 *.log
