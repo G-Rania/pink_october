@@ -8,6 +8,8 @@
 - Netlify Functions: all four endpoints bundled successfully.
 - Application dependency audit: 0 known vulnerabilities after the final dependency update.
 - Frontend bundle: no temporary Figma URLs or Supabase server-key references.
+- Client-secret post-build guard: raw, URI-encoded, and base64-encoded server
+  values are rejected if they appear anywhere in `dist`.
 - Build output: approximately 77 KB gzipped JavaScript and 4.4 KB gzipped CSS,
   plus the original Figma assets and local fonts.
 

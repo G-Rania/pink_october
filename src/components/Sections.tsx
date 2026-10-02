@@ -30,14 +30,14 @@ export function Closing() {
     fit();void document.fonts.ready.then(fit);
   },[ref]);
   return <section className="closing" aria-labelledby="closing-heading" data-node-id="461:423">
-    <div ref={ref} className="closing-art-scale" aria-hidden="true">
+    <div ref={ref} className="closing-art-scale" aria-hidden="true" data-reveal="left">
       <div className="closing-artboard">
         <span className="closing-pattern"><span className="closing-pattern-label">PINK OCTOBER</span></span>
         <img className="closing-leaves" src="/assets/vectors/closing-leaves.svg" alt="" />
         <img className="closing-flower" src="/assets/vectors/closing-flower.svg" alt="" />
       </div>
     </div>
-    <div className="closing-copy">
+    <div className="closing-copy reveal-delay-1" data-reveal="right">
       <h2 id="closing-heading">And if you're the one fighting…</h2>
       <div>
         <p>You may never meet the people behind these dots, but every one of them showed up here with you in mind.</p>
@@ -47,5 +47,5 @@ export function Closing() {
   </section>;
 }
 export function Footer() {
-  return <footer><p>Pink Wall · Pink October 2026</p><p>Made with love by Niara Designs.</p></footer>;
+  return <footer data-reveal="up"><p>Pink Wall · Pink October 2026</p><p>Made with love by Niara Designs.</p></footer>;
 }

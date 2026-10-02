@@ -4,10 +4,12 @@ import { Hero, Closing, Footer } from './components/Sections';
 import { Ribbon } from './components/Ribbon';
 import { MessageForm } from './components/MessageForm';
 import { useReducedMotion } from './hooks/useReducedMotion';
+import { useScrollReveal } from './hooks/useScrollReveal';
 export default function App() {
   const [formOpen,setFormOpen]=useState(false),[contribution,setContribution]=useState<SupportMessage|null>(null);
   const restoreFocus=useRef<HTMLElement|null>(null);
   const reduced=useReducedMotion();
+  useScrollReveal();
   function leaveMessage() { restoreFocus.current=document.activeElement as HTMLElement;setFormOpen(true); }
   function submitted(message:SupportMessage) {
     setFormOpen(false);setContribution(message);

@@ -72,11 +72,11 @@ export function Ribbon({onLeaveMessage,contribution}:{onLeaveMessage:()=>void;co
   },[occupied,open]);
   const point=selection&&viewport.screenPoint(selection.dot_id);
   return <section className="ribbon-section" id="ribbon" aria-labelledby="ribbon-heading">
-    <div className="ribbon-intro">
+    <div className="ribbon-intro" data-reveal="up">
       <h2 id="ribbon-heading">One <em>Ribon</em>. Thousands of <em>Voices</em></h2>
       <p>Every filled dot holds a message of support, left by someone for someone they may never meet.</p>
     </div>
-    <div className="ribbon-workspace">
+    <div className="ribbon-workspace reveal-delay-1" data-reveal="scale">
       <div className="ribbon-toolbar"><span className="ribbon-count">
         <span className="filled-dot-key" aria-hidden="true" />{loading?'Gathering voices…':occupied.size.toLocaleString()+' messages of support'}
       </span>{repository.isDemo&&<span className="demo-badge">Local demo · example messages</span>}</div>
