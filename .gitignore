@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.netlify/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
+*.log
+
+artifacts/
+dependency-audit.json
+netlify/functions/*.zip
+netlify/functions/manifest.json
