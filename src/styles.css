@@ -29,7 +29,7 @@ img{display:block}
 .skip-link{position:fixed;z-index:100;top:16px;left:16px;transform:translateY(-150%);padding:14px 22px;border-radius:50px;background:var(--cream);color:var(--ink)}
 .skip-link:focus{transform:none}
 .site-header{position:fixed;z-index:50;top:18px;left:50%;width:min(680px,calc(100% - 32px));translate:-50% 0}
-.site-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:58px;padding:8px 10px 8px 18px;border:1px solid rgb(233 200 204 / 82%);border-radius:999px;background:rgb(251 244 226 / 88%);box-shadow:0 10px 35px rgb(128 55 75 / 11%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.site-nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:58px;padding:8px 10px 8px 18px;border:1px solid rgb(233 200 204 / 82%);border-radius:999px;background:rgb(251 244 226 / 88%);box-shadow:0 10px 35px rgb(128 55 75 / 11%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .site-nav a{color:var(--ink);text-decoration:none}
 .nav-logo{display:flex;align-items:center;gap:10px;font:700 22px/1 var(--title-font);white-space:nowrap}
 .nav-logo em{color:var(--pink)}
@@ -41,6 +41,7 @@ img{display:block}
 .nav-links{display:flex;align-items:center;gap:3px}
 .nav-links a{padding:11px 15px;border-radius:999px;font-size:13px;font-weight:600;transition:color .2s,background .2s,transform .2s}
 .nav-links a:hover,.nav-links a:focus-visible{color:#471724;background:var(--pale-pink);transform:translateY(-1px)}
+.nav-toggle{display:none}
 #home,#ribbon,#support{scroll-margin-top:96px}
 /* Reveal content only after JavaScript has registered the observer. */
 .reveal-ready [data-reveal]{opacity:0;transform:translate3d(0,34px,0);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
@@ -184,15 +185,26 @@ footer{display:flex;justify-content:space-between;gap:16px;padding:70px 0 36px;m
   .nav-links{gap:0}
   .nav-links a{padding:10px 9px;font-size:11px}
 }@media(max-width:760px){
+  .site-header{top:12px;width:calc(100% - 24px)}
+  .site-nav{min-height:54px;padding:7px 9px 7px 14px}
+  .nav-logo{gap:7px;font-size:20px}
+  .nav-logo img{width:31px;height:31px}
+  .nav-toggle{display:grid;place-content:center;gap:5px;width:42px;height:40px;padding:0;border:1px solid var(--border);border-radius:50%;background:var(--pale-pink);color:var(--ink)}
+  .nav-toggle i{display:block;width:16px;height:1.5px;background:currentColor;transition:transform .2s}
+  .nav-toggle[aria-expanded=true] i:first-of-type{transform:translateY(3.25px) rotate(45deg)}
+  .nav-toggle[aria-expanded=true] i:last-of-type{transform:translateY(-3.25px) rotate(-45deg)}
+  .nav-links{display:none;position:absolute;top:calc(100% + 8px);right:0;left:0;flex-direction:column;align-items:stretch;gap:3px;padding:8px;border:1px solid var(--border);border-radius:22px;background:rgb(251 244 226 / 97%);box-shadow:0 14px 28px rgb(128 55 75 / 15%);backdrop-filter:blur(14px)}
+  .nav-links.is-open{display:flex}
+  .nav-links a{padding:12px 14px;font-size:14px}
   .page-shell{width:calc(100% - 32px)}
-  .hero{padding-top:24px}
-  .hero-scale{aspect-ratio:auto;height:700px;border-radius:26px}
+  .hero{padding-top:78px}
+  .hero-scale{aspect-ratio:auto;height:clamp(660px,175vw,700px);border-radius:26px}
   .hero-artboard{width:100%;height:100%;transform:none}
   .hero-texture{width:100%;height:100%;object-fit:cover;left:0}
-  .hero-title{left:24px;top:32px;transform:scale(var(--hero-title-scale));transform-origin:top left}
+  .hero-title{left:24px;top:62px;transform:scale(var(--hero-title-scale));transform-origin:top left}
   .hero-support{left:24px;top:126px;width:calc(100% - 48px);font-size:32px;line-height:1.24}
   .hero-support em{font-size:39px}
-  .support-highlight{left:-32px;top:-18px;transform:scale(.62) rotate(-1.28deg);transform-origin:50% 50%}
+  .support-highlight{left:-58px;top:-25px;transform:scale(.55) rotate(-1.28deg);transform-origin:50% 50%}
   .hero-description{left:24px;top:232px;right:auto;width:calc(100% - 48px);font-size:21px;line-height:1.4;text-align:left;max-width:385px}
   .hero-pattern{top:404px;font-size:58px;line-height:88px}
   .hero-pattern>div{gap:10px}
