@@ -25,11 +25,15 @@ export async function readBody(request:Request) {
   try{return JSON.parse(text) as unknown;}catch{throw new HttpError(400,'Please check the form fields.');}
 }
 export function visitorKey(context:Context) {
-  const secret=process.env.RATE_LIMIT_SECRET;
-  if(!secret||secret.length<32)throw new HttpError(503,'Message submissions are not configured yet.');
+  // A dedicated key is preferred. Deriving a purpose-specific key from the
+  // server-only Supabase credential keeps deployments functional when the
+  // optional separation key was not configured.
+  const sourceSecret=process.env.RATE_LIMIT_SECRET||process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if(!sourceSecret||sourceSecret.length<32)throw new HttpError(503,'Message submissions are not configured yet.');
   // context.ip is supplied by Netlify, never trust a client-provided forwarding header.
   if(!context.ip)throw new HttpError(503,'Unable to verify this request. Please try again.');
-  return createHmac('sha256',secret).update(context.ip).digest('hex');
+  const hmacKey=createHmac('sha256',sourceSecret).update('pink-dots/visitor-key/v1').digest();
+  return createHmac('sha256',hmacKey).update(context.ip).digest('hex');
 }
 export function failure(error:unknown) {
   if(error instanceof HttpError)return json({error:error.message},error.status);

@@ -15,7 +15,7 @@ function post(path:string,body:unknown,origin?:string){
 }
 beforeEach(()=>{
   vi.stubEnv('SUPABASE_URL','https://project.example.invalid');
-  vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY','fixture-server-key');
+  vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY','fixture-server-key-longer-than-32-characters');
   vi.stubEnv('RATE_LIMIT_SECRET','test-only-secret-value-longer-than-32-characters');
   vi.stubEnv('MESSAGE_MODERATION_MODE','published');
 });
@@ -63,8 +63,20 @@ describe('controlled server endpoints',()=>{
     expect((await report(post('report',{message_id:'invalid'}),context)).status).toBe(400);
     expect(fetch).not.toHaveBeenCalled();
   });
-  it('refuses submissions when trusted visitor hashing is not configured',async()=>{
-    vi.stubEnv('RATE_LIMIT_SECRET','');const fetch=vi.fn();vi.stubGlobal('fetch',fetch);
+  it('falls back to a purpose-derived server credential for visitor hashing',async()=>{
+    vi.stubEnv('RATE_LIMIT_SECRET','');
+    const fetch=vi.fn(async(_url:string,init:RequestInit)=>{
+      const payload=JSON.parse(String(init.body));
+      expect(payload.p_visitor_key).toMatch(/^[a-f0-9]{64}$/);
+      return Response.json([display]);
+    });
+    vi.stubGlobal('fetch',fetch);
+    const response=await submit(post('submit',{message:'Sending love',author_name:'Ana',symbol:'🩷',website:'',request_id:requestId}),context);
+    expect(response.status).toBe(201);
+  });
+  it('refuses submissions when no trusted visitor hashing secret exists',async()=>{
+    vi.stubEnv('RATE_LIMIT_SECRET','');vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY','');
+    const fetch=vi.fn();vi.stubGlobal('fetch',fetch);
     const response=await submit(post('submit',{message:'Sending love',author_name:'Ana',symbol:'🩷',website:'',request_id:requestId}),context);
     expect(response.status).toBe(503);expect(fetch).not.toHaveBeenCalled();
   });
