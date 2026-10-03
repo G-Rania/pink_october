@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { SupportMessage } from './types';
-import { Hero, Closing, Footer } from './components/Sections';
+import { Hero, Closing, Footer, Navbar } from './components/Sections';
 import { Ribbon } from './components/Ribbon';
 import { MessageForm } from './components/MessageForm';
 import { useReducedMotion } from './hooks/useReducedMotion';
@@ -17,6 +17,7 @@ export default function App() {
   }
   return <>
     <a className="skip-link" href="#ribbon">Skip to the ribbon</a>
+    <Navbar />
     <main className="page-shell"><Hero onLeaveMessage={leaveMessage} />
       <Ribbon onLeaveMessage={leaveMessage} contribution={contribution} />
       <Closing />
