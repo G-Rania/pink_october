@@ -4,7 +4,7 @@ export function Navbar() {
   return <header className="site-header">
     <nav className="site-nav" aria-label="Primary navigation">
       <a className="nav-logo" href="#home" aria-label="Pink Dots, back to top">
-        <span ><img src="public/assets/vectors/closing-flower.svg" alt="" width="36" height="36" /></span>
+        <span ><img src="/assets/vectors/closing-flower.svg" alt="" width="36" height="36" /></span>
         <span>Pink <em>Dots</em></span>
       </a>
       <div className="nav-links">
