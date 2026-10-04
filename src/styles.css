@@ -1,5 +1,5 @@
 @import './fonts.generated.css';
-@font-face{font-family:'Pink Wall Emoji';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/NotoColorEmoji-Symbols.woff2') format('woff2')}
+@font-face{font-family:'Pink Dots Emoji';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/NotoColorEmoji-Symbols.woff2') format('woff2')}
 @font-face{font-family:'Cormorant Infant';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/CormorantInfant-Bold.ttf') format('truetype')}
 @font-face{font-family:'Cormorant Infant';font-style:italic;font-weight:700;font-display:swap;src:url('/fonts/CormorantInfant-BoldItalic.ttf') format('truetype')}
 @font-face{font-family:'Cormorant Infant';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/CormorantInfant-Bold.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -7,14 +7,17 @@
 :root{
   --cream:#fbf4e2;--pink:#fb6f92;--soft-pink:#ffc2d1;--pale-pink:#ffe5ec;
   --text:#626262;--ink:#80374b;--border:#e9c8cc;
-  --body-font:'Gilroy','Century Gothic','Trebuchet MS','Pink Wall Emoji',sans-serif;
+  --body-font:'Gilroy','Century Gothic','Trebuchet MS','Pink Dots Emoji',sans-serif;
   --title-font:'Cormorant Infant',Georgia,serif;
   font-family:var(--body-font);color:var(--text);background:var(--cream);
   font-synthesis:none;
 }
 *{box-sizing:border-box}
+::selection{background:var(--soft-pink);color:var(--ink)}
+::-moz-selection{background:var(--soft-pink);color:var(--ink)}
+input,textarea{caret-color:var(--pink)}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{margin:0;overflow-x:hidden}
+body{margin:0;overflow-x:clip}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
 button:disabled{cursor:default;opacity:.55}
@@ -76,16 +79,20 @@ img{display:block}
 .hero-backdrop{position:absolute;left:403px;top:369px;animation:backdropBreathe 7s 1.2s ease-in-out infinite}
 .hero-photo{position:absolute;left:427px;top:214px;width:460px;height:559px;overflow:hidden;filter:drop-shadow(11px 20px 17px rgb(0 0 0 / 25%));animation:heroPhotoIn 1.05s .28s cubic-bezier(.22,1,.36,1) both}
 .hero-photo img{position:absolute;left:-248.72px;top:-357.42px;width:918.11px;height:916.42px;max-width:none;animation:photoFloat 6s 1.5s ease-in-out infinite}
-.hero-button{position:absolute;left:952px;top:511px;display:flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:60px;background:var(--pale-pink);color:var(--pink);font-size:25.692px;font-weight:600;letter-spacing:-.3854px;min-height:62px;transition:background .2s,transform .2s,box-shadow .2s;animation:heroSideIn .8s .72s cubic-bezier(.22,1,.36,1) both}
+.hero-button{position:absolute;left:952px;top:511px;display:flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:60px;background:var(--pale-pink);color:var(--pink);font-size:25.692px;font-weight:600;letter-spacing:-.3854px;min-height:62px;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;animation:heroSideIn .8s .72s cubic-bezier(.22,1,.36,1) both}
 .hero-button:hover{background:#fff4f7;transform:translateY(-3px);box-shadow:0 10px 22px rgb(128 55 75 / 13%)}.hero-button img{transition:translate .2s ease}.hero-button:hover img,.hero-button:focus-visible img{translate:4px -4px}
 .ribbon-section{padding-top:114px;scroll-margin-top:24px}
 .ribbon-intro{max-width:957px;margin:0 auto;text-align:center}
 .ribbon-intro h2{line-height:normal}
 .ribbon-intro>p{margin-top:32px;font-size:36px;line-height:1.25}
+.ribbon-intro .ribbon-how{max-width:760px;margin:22px auto 0;font-size:20px;line-height:1.5;color:var(--ink)}
+.ribbon-intro-actions{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap}.ribbon-cta{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:58px;padding:14px 24px;border-radius:60px;background:var(--pink);color:#471724;font-family:var(--body-font);font-size:17px;font-weight:600;line-height:1.2;letter-spacing:0;box-shadow:0 10px 25px rgb(128 55 75 / 16%);transition:transform .2s,box-shadow .2s,background .2s}
+.ribbon-cta:hover,.ribbon-cta:focus-visible{background:#f98ba6;transform:translateY(-3px);box-shadow:0 14px 30px rgb(128 55 75 / 20%)}
+.ribbon-cta span{font-size:23px;line-height:1;font-weight:400}.ribbon-read-cta{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:58px;padding:13px 23px;border:1px solid var(--pink);border-radius:60px;background:var(--cream);color:var(--ink);font-family:var(--body-font);font-size:17px;font-weight:600;line-height:1.2;transition:transform .2s,background .2s,box-shadow .2s}.ribbon-read-cta:hover:not(:disabled),.ribbon-read-cta:focus-visible:not(:disabled){background:var(--pale-pink);transform:translateY(-3px);box-shadow:0 10px 22px rgb(128 55 75 / 10%)}.ribbon-read-cta span{font-size:23px;line-height:1;font-weight:400}
 .ribbon-workspace{margin-top:46px}
-.ribbon-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 22px 15px;font-size:14px;color:var(--text)}
+.ribbon-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 22px 15px;font-size:14px;color:var(--text)}
 .ribbon-count{display:flex;align-items:center;gap:9px}
-.filled-dot-key{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--pink)}
+.dot-key{display:flex;align-items:center;justify-content:center;gap:18px;margin-left:auto}.dot-key>span{display:flex;align-items:center;gap:7px;white-space:nowrap;color:var(--ink);font-size:12px}.dot-key small{color:var(--text);font-size:11px}.key-dot{display:inline-block;width:13px;height:13px;border-radius:50%;flex:0 0 13px}.key-dot.filled{background:var(--pink)}.key-dot.empty{border:2px solid var(--pink);background:transparent}
 .demo-badge{font-size:12px;color:var(--ink);background:var(--pale-pink);padding:7px 12px;border-radius:30px}
 .canvas-wrap{position:relative;border:1px solid var(--border);border-radius:33px;overflow:hidden;background:linear-gradient(180deg,rgba(255,229,236,.13),rgba(255,229,236,.3));height:700px}
 .canvas-wrap canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
@@ -101,7 +108,7 @@ img{display:block}
 .canvas-label{position:absolute;bottom:24px;left:28px;color:var(--ink);font-size:13px;letter-spacing:.02em;pointer-events:none}
 .touch-toggle{display:none}
 .ribbon-bottom{display:flex;gap:22px;align-items:center;justify-content:space-between;margin-top:24px}
-.ribbon-bottom>div{flex:1}
+.ribbon-bottom>div{flex:1;text-align:center}
 .ribbon-bottom p{font-size:17px;line-height:1.5}
 .ribbon-bottom .gesture-hint{margin-top:5px;font-size:12px;color:var(--text)}
 .mobile-hint{display:none}
@@ -135,7 +142,7 @@ img{display:block}
 .closing-copy p{font-size:34px;line-height:50px}
 .closing-copy .closing-emphasis{margin-top:50px;font-weight:600;font-style:italic}
 .closing-pattern-label{display:inline-block;transform-origin:left center}
-.heart,.message-symbol,.symbol-choice>span:first-of-type{font-family:'Pink Wall Emoji','Segoe UI Emoji',sans-serif;font-style:normal;font-weight:400;white-space:nowrap}
+.heart,.message-symbol,.symbol-choice>span:first-of-type{font-family:'Pink Dots Emoji','Segoe UI Emoji',sans-serif;font-style:normal;font-weight:400;white-space:nowrap}
 footer{display:flex;justify-content:space-between;gap:16px;padding:70px 0 36px;max-width:1280px;width:calc(100% - clamp(40px,11.111vw,160px));margin:0 auto;font-size:12px;line-height:1.5;color:var(--text)}
 .message-dialog{border:1px solid var(--border);border-radius:32px;background:var(--cream);color:var(--text);padding:0;width:min(570px,calc(100% - 32px));max-height:calc(100dvh - 40px);overflow:auto;box-shadow:0 20px 70px rgb(83 37 49 / 15%)}
 .message-dialog::backdrop{background:rgb(51 27 34 / 35%);backdrop-filter:blur(5px)}
@@ -219,6 +226,10 @@ footer{display:flex;justify-content:space-between;gap:16px;padding:70px 0 36px;m
   .ribbon-intro{padding:0 8px}
   .ribbon-intro h2{font-size:40px;line-height:1.07}
   .ribbon-intro>p{margin-top:20px;font-size:19px;line-height:1.5}
+  .ribbon-intro .ribbon-how{margin-top:16px;font-size:15px;line-height:1.5}
+  .ribbon-intro-actions{margin-top:22px;gap:9px}.ribbon-cta,.ribbon-read-cta{min-height:52px;padding:12px 17px;font-size:14px}
+  .dot-key{order:3;width:100%;justify-content:flex-start;gap:14px;flex-wrap:wrap}
+  .dot-key>span{font-size:11px}.dot-key small{font-size:10px}
   .ribbon-workspace{margin-top:30px}
   .ribbon-toolbar{flex-wrap:wrap;font-size:12px;padding:0 8px 12px;gap:8px}
   .demo-badge{font-size:10px;padding:5px 9px}

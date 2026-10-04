@@ -14,7 +14,7 @@ export function json(data:unknown,status=200,cache=false) {
 export function requirePost(request:Request) {
   if(request.method!=='POST')throw new HttpError(405,'Method not allowed.');
   const origin=request.headers.get('origin');
-  if(origin&&origin!==new URL(request.url).origin)throw new HttpError(403,'Please submit from Pink Wall.');
+  if(origin&&origin!==new URL(request.url).origin)throw new HttpError(403,'Please submit from Pink Dots.');
   if(!request.headers.get('content-type')?.toLowerCase().startsWith('application/json'))
     throw new HttpError(415,'Please send a JSON request.');
   if(Number(request.headers.get('content-length')||0)>4096)throw new HttpError(413,'Your message is too long.');
@@ -38,6 +38,6 @@ export function visitorKey(context:Context) {
 export function failure(error:unknown) {
   if(error instanceof HttpError)return json({error:error.message},error.status);
   // Never log payloads, keys, IPs, or upstream response bodies.
-  console.error('Pink Wall API request failed.');
+  console.error('Pink Dots API request failed.');
   return json({error:'The ribbon is taking a moment. Please try again.'},503);
 }

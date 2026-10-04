@@ -16,7 +16,7 @@ export function Navbar() {
   </header>;
 }
 export function Arrow() { return <img src="/assets/icons/arrow-up-right.svg" alt="" width="42" height="42" />; }
-export function Hero({onLeaveMessage}:{onLeaveMessage:()=>void}) {
+export function Hero() {
   const ref=useDesignScale(1280);
   return <section className="hero" id="home" aria-labelledby="hero-heading" data-node-id="453:269">
     <h1 className="sr-only" id="hero-heading">October reminds us. But support has no season.</h1>
@@ -27,13 +27,13 @@ export function Hero({onLeaveMessage}:{onLeaveMessage:()=>void}) {
         <div className="hero-support">
           <span>But <em>support<img className="support-highlight" src="/assets/vectors/support-highlight.svg" alt="" /></em><br />has no season.</span>
         </div>
-        <p className="hero-description">Leave a few words of love, strength, or hope and let them stay here, all year long.</p>
+        <p className="hero-description">Leave a few words of love, strength, or hope in the ribbon and let them stay here, all year long.</p>
         <div className="hero-pattern" aria-hidden="true">
           {[0,1,2].map(i=><div key={i}><span>PINK OCTOBER</span><span>PINK OCTOBER</span></div>)}
         </div>
         <img className="hero-backdrop" src="/assets/vectors/hero-flower-backdrop.svg" alt="" />
         <div className="hero-photo"><img src="/assets/images/hand-flower.png" alt="Two hands gently holding a pink gerbera flower" width="918" height="917" /></div>
-        <button className="hero-button" onClick={onLeaveMessage}>Leave a message<Arrow /></button>
+        <a className="hero-button" href="#ribbon">Explore the ribbon<Arrow /></a>
       </div>
     </div>
   </section>;

@@ -73,13 +73,23 @@ export function Ribbon({onLeaveMessage,contribution}:{onLeaveMessage:()=>void;co
   const point=selection&&viewport.screenPoint(selection.dot_id);
   return <section className="ribbon-section" id="ribbon" aria-labelledby="ribbon-heading">
     <div className="ribbon-intro" data-reveal="up">
-      <h2 id="ribbon-heading">One <em>Ribon</em>. Thousands of <em>Voices</em></h2>
+      <h2 id="ribbon-heading">One <em>Ribbon</em>. Thousands of <em>Voices</em></h2>
       <p>Every filled dot holds a message of support, left by someone for someone they may never meet.</p>
+      <p className="ribbon-how">Add your words and we’ll fill an empty dot for you. Your message becomes part of the ribbon for others to discover.</p>
+      <div className="ribbon-intro-actions">
+        <button className="ribbon-cta" onClick={onLeaveMessage}>Fill a dot with your message <span aria-hidden="true">↗</span></button>
+        <button className="ribbon-read-cta" onClick={()=>read()} disabled={!occupied.size}>Read a message <span aria-hidden="true">↗</span></button>
+      </div>
     </div>
     <div className="ribbon-workspace reveal-delay-1" data-reveal="scale">
-      <div className="ribbon-toolbar"><span className="ribbon-count">
-        <span className="filled-dot-key" aria-hidden="true" />{loading?'Gathering voices…':occupied.size.toLocaleString()+' messages of support'}
-      </span>{repository.isDemo&&<span className="demo-badge">Local demo · example messages</span>}</div>
+      <div className="ribbon-toolbar">
+        <span className="ribbon-count">{loading?'Gathering voices…':occupied.size.toLocaleString()+' messages of support'}</span>
+        <div className="dot-key" aria-label="Ribbon dot key">
+          <span><i className="key-dot filled" aria-hidden="true" />Filled dot <small>contains a message</small></span>
+          <span><i className="key-dot empty" aria-hidden="true" />Empty dot <small>space for your message</small></span>
+        </div>
+        {repository.isDemo&&<span className="demo-badge">Local demo · example messages</span>}
+      </div>
       <div className={'canvas-wrap '+(touchExplore?'touch-explore':'')}>
         <canvas ref={viewport.canvasRef} tabIndex={0} role="img"
           aria-label="Breast cancer awareness ribbon made of dots. Outlined dots are available spaces; filled dots contain messages."
@@ -112,8 +122,7 @@ export function Ribbon({onLeaveMessage,contribution}:{onLeaveMessage:()=>void;co
         <div><p id="ribbon-instructions">Zoom in to read them. Leave yours to fill another dot.</p>
           <p className="gesture-hint"><span className="desktop-hint">Drag to explore · Ctrl/⌘ + scroll to zoom</span><span className="mobile-hint">Tap Explore ribbon to pan and pinch. Tap Done to scroll.</span></p>
         </div>
-        <button className="text-button" onClick={()=>read()} disabled={!occupied.size}>Read a message <span aria-hidden="true">↗</span></button>
-        <button className="primary-button" onClick={onLeaveMessage}>Leave a message <span aria-hidden="true">↗</span></button>
+
       </div>
     </div>
     <p className="sr-only" id="keyboard-instructions">Use the zoom buttons, or focus the ribbon and press plus or minus to zoom, arrow keys to pan, Home to reset, and Enter to read a message. Next and previous buttons let you read other messages.</p>
